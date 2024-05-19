@@ -2,7 +2,6 @@ import os
 import sqlite3
 import pandas as pd
 from collections import defaultdict
-import shutil
 
 # Store folder renaming information
 folder_rename_dict = defaultdict(str)
