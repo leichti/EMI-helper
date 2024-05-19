@@ -5,7 +5,7 @@ import re
 import logging
 
 # Configure logging
-logging.basicConfig(filename='samples_overview.log', level=logging.INFO,
+logging.basicConfig(filename='../outputs/samples_overview.log', level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 
@@ -132,7 +132,7 @@ def rename_image_files_and_update_db(measured_values_df, folder_path, db_path):
 
 
 def main():
-    root_directory = 'data'
+    root_directory = '../data'
     samples_list = []
 
     # Traverse directories and collect sample information
@@ -147,15 +147,18 @@ def main():
     # Sort the DataFrame by Dust-Nr and then by Washed
     df = df.sort_values(by=['Dust-Nr', 'Washed'])
 
+    if not os.path.exists("../outputs"):
+        os.makedirs("../outputs")
+
     # Save the DataFrame to a CSV file
-    df.to_excel('outputs/samples_overview.xlsx', index=False)
+    df.to_excel('../outputs/samples_overview.xlsx', index=False)
     print("Overview table created and saved as 'samples_overview.xlsx'.")
 
     # Create a summary DataFrame
     summary_df = create_summary_dataframe(df)
 
     # Save the summary DataFrame to an Excel file
-    summary_df.to_excel('samples_summary.xlsx', index=False)
+    summary_df.to_excel('../outputs/samples_summary.xlsx', index=False)
     print("Summary table created and saved as 'samples_summary.xlsx'.")
 
     # Traverse directories to rename image files and update the database

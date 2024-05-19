@@ -70,8 +70,8 @@ def process_samples(root_directory, target_directory):
 
 
 def main():
-    root_directory = 'data'
-    target_directory = 'parquet_data'
+    root_directory = '../data'
+    target_directory = '../parquet_data'
     process_samples(root_directory, target_directory)
 
 

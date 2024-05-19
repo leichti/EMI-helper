@@ -2,6 +2,7 @@ import os
 import sqlite3
 import pandas as pd
 from collections import defaultdict
+import shutil
 
 # Store folder renaming information
 folder_rename_dict = defaultdict(str)
@@ -34,14 +35,17 @@ def read_measurement_series_meta_info(db_path):
             new_name = input(
                 f"Current Samplename is '{current_name}'. Enter new name or press Enter to keep: ") or current_name
 
-            # Update the database if the name has changed
-            if new_name != current_name:
-                cursor.execute("UPDATE MeasurementSeriesMetaInfo SET Samplename = ? WHERE Samplename = ?",
-                               (new_name, current_name))
-                conn.commit()
+            if new_name == current_name:
+                conn.close()
+                return
+
+            cursor.execute("UPDATE MeasurementSeriesMetaInfo SET Samplename = ? WHERE Samplename = ?",
+                           (new_name, current_name))
+            conn.commit()
 
             # Store folder renaming information
             parent_dir = os.path.dirname(db_path)
+            conn.close()
             handle_rename(parent_dir, new_name)
     else:
         print(f"No MeasurementSeriesMetaInfo table found in {db_path}.")
@@ -87,9 +91,9 @@ def handle_rename(old_name, new_name):
 
     if not os.path.exists(new_path):
         os.rename(old_name, new_path)
-        print(f"Renamed {old_name} to {new_name}")
+        print(f"Renamed {old_name} to {new_name} ({new_path})")
 
 
 # Call the functions with the root directory
-root_directory = 'data/complete'
+root_directory = '../data/'
 traverse_directories(root_directory)
