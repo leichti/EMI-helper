@@ -9,5 +9,5 @@ def get_sample_names(data_dir='../data'):
             sample_names.append(folder)
     return sample_names
 
-def load_parquet_file(file_path):
-    return pd.read_parquet("../"+file_path)
+def load_parquet_file(sample_name, path="../"):
+    return pd.read_parquet(path+"parquet_data/"+sample_name+"_MeasuredValues.parquet")

@@ -6,7 +6,7 @@ from gui import GUIManager
 
 def main():
     sample_names = get_sample_names()
-    parquet_file = f"parquet_data/{sample_names[0]}_MeasuredValues.parquet"
+    parquet_file = f"{sample_names[0]}"
     df = load_parquet_file(parquet_file)
     columns = df.columns
 

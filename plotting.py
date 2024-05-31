@@ -81,7 +81,7 @@ def main():
     CTkLabel(control_frame, text="Y-axis:").grid(row=1, column=0, sticky='w')
     CTkOptionMenu(control_frame, variable=y_var, command=lambda _: plot(), values=columns).grid(row=1, column=1, sticky='w')
 
-    # Treeview for sample selection
+    # Treeview for sample selection#
     tree_frame = CTkFrame(control_frame)
     tree_frame.grid(row=2, column=0, columnspan=2, pady=5)
     tree = ttk.Treeview(tree_frame, columns=("Sample", "Select", "X", "Y"), show='headings')

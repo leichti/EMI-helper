@@ -18,7 +18,7 @@ def main():
     sample_names = get_sample_names()
     image_cache = {}  # Cache to store loaded images
 
-    root = Tk()
+    root = Tk()#
     root.title("Image Loader")
     root.state('zoomed')  # Start maximized
 

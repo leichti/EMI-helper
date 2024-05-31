@@ -18,6 +18,7 @@ customtkinter.set_default_color_theme("h2-lab.json")
 class GUIManager:
     def __init__(self, columns, plot_callback, sample_names):
         self.plot_callback = plot_callback
+        sample_names = sorted(sample_names)
         self.sample_names = sample_names
         self.config_file = "plot_styles.json"
         self.root = CTk()

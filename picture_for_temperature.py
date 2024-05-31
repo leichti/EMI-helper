@@ -144,7 +144,7 @@ def process_folder(root_directory, target_temperature, samplename=None, force=Tr
         target_image_path = construct_target_image_path(target_folder, samplename, target_format)
 
         if not force and os.path.exists(target_image_path):
-            print(f"Image for {samplename} at {target_temperature} °C already exists. Skipping processing.")
+            print(f"Image for {samplename} at {target_temperature:.0f} °C already exists. Skipping processing.")
             return
 
         if os.path.isdir(folder_path):

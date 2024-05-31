@@ -94,5 +94,5 @@ def handle_rename(old_name, new_name):
 
 
 # Call the functions with the root directory
-root_directory = '../data/'
+root_directory = '../data_new/'
 traverse_directories(root_directory)
